@@ -7,6 +7,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="Wild Card Level Pickers"/>
             <Picker Title="WildCardTeam1" ItemsSource="{Binding WildCardTeam1Options}" SelectedItem="{Binding SelectedWildCardTeam1, Mode=TwoWay}"/>
             <Picker Title="WildCardTeam2" ItemsSource="{Binding WildCardTeam2Options}" SelectedItem="{Binding SelectedWildCardTeam2, Mode=TwoWay}"/>
         </StackLayout>

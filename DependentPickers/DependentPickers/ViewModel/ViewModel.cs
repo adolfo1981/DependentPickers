@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DependentPickers.Utils;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -26,8 +27,29 @@ namespace DependentPickers.ViewModel
                 if(WildCardTeam2Options.Contains(SelectedWildCardTeam1))
                 {
                     WildCardTeam2Options.Remove(SelectedWildCardTeam1);
+                    AddMissingItems(WildCardTeam2Options, SelectedWildCardTeam1, AvailableTeams);
                 }
             }
+            if (e.PropertyName == nameof(SelectedWildCardTeam2))
+            {
+                if (WildCardTeam1Options.Contains(SelectedWildCardTeam2))
+                {
+                    WildCardTeam1Options.Remove(SelectedWildCardTeam2);
+                    AddMissingItems(WildCardTeam1Options, SelectedWildCardTeam2, AvailableTeams);
+                }
+            }
+        }
+
+        private void AddMissingItems(ObservableCollection<string> collection, string removedItem, List<string> availableOptions)
+        {
+            foreach(var option in availableOptions)
+            {
+                if(!collection.Contains(option) && option != removedItem)
+                {
+                    collection.Add(option);
+                }
+            }
+            collection.Sort();
         }
 
         private void GetData()
